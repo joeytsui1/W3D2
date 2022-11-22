@@ -1,28 +1,28 @@
 class Card
-    attr_reader :face_value
+    attr_reader :face_up
 
     def initialize (face_value)
         @face_value = face_value
-        @face_up = true
+        @revealed = true
     end
 
     def hide
-        @face_up = false
+        @revealed = false
     end
 
     def reveal
-        @face_up = true
+        @revealed = true
     end
 
     def to_s
-        @face_value ? @face_value : " "
+        @revealed ? @face_value : " "
     end
 
     def ==(other_card)
         self.face_up == other_card.face_up
     end
 
-    def inspect
-        "hello world"
-    end
+    # def inspect
+    #     "hello world"
+    # end
 end

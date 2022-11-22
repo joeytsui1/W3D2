@@ -1,9 +1,15 @@
+require_relative "card.rb"
+
 class Board
 
     attr_reader :board
-    def initialize (size)
+    def initialize(size=4)
         @board = Array.new(size) {Array.new(size, "_")}
-        @card = Card.new()
+        # @card = Card.new()
+    end
+
+    def populate
+        
     end
 
     def [](pos)
