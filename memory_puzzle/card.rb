@@ -1,24 +1,9 @@
 class Card
-    @@cards = []
+    attr_reader :face_value
 
-    def self.make_random_card
-        card = ""
-
-        card << ("A".."Z").to_a.sample
-
-        self.new(card, self.random_state_of_card)
-    end
-
-    def self.random_state_of_card
-        [true, false].sample
-    end
-
-    attr_reader :face_value, :face_up
-    def initialize (face_value, face_up)
+    def initialize (face_value)
         @face_value = face_value
-        @face_up = face_up
-
-        @@cards << self
+        @face_up = true
     end
 
     def hide
@@ -26,14 +11,18 @@ class Card
     end
 
     def reveal
-        if @face_up
-            return @face_value
-        else
-            return "nothing"
-        end
+        @face_up = true
     end
 
-    def self.cards
-        @@cards
+    def to_s
+        @face_value ? @face_value : " "
+    end
+
+    def ==(other_card)
+        self.face_up == other_card.face_up
+    end
+
+    def inspect
+        "hello world"
     end
 end

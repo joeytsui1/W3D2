@@ -1,10 +1,10 @@
 class Board
 
+    attr_reader :board
     def initialize (size)
-        @grid = Array.new(size) {Array.new(size, "_")}
+        @board = Array.new(size) {Array.new(size, "_")}
         @card = Card.new()
     end
-
 
     def [](pos)
         row, col = pos
@@ -23,6 +23,11 @@ class Board
     end
 
     def won?
-        if cards.all? {|card| car.reveal} 
+    end
+
+    def reveal(pos)
+        if card.hide
+            return card.face_value
+        end
     end
 end
