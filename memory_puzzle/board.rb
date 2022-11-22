@@ -19,20 +19,13 @@ class Board
     end
     
     def populate
-        alpha = ("A".."Z").to_a
         num_pairs = (@size * @size) / 2
-        pair_arr = [] # aa bb cc dd ee ff gg hh
-
-        while num_pairs > 0
-            pair_arr << alpha.shuffle.take(1) * 2
-            num_pairs -= 1
-        end
-
-        pair_arr.shuffle
-
-        @grid.each_index do |i|
-            @grid[i].each_index do |j|
-                @grid[i][j] == pair_arr.pop 
+        cards = Card.shuffled_pairs(num_pairs)
+       
+        @grid.each_with_index do |row, idx|
+            row.each_with_index do |spot, jdx|
+                pos = [idx, jdx]
+                self[pos] = cards.pop
             end
         end
     end
