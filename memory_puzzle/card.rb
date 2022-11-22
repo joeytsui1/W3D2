@@ -1,9 +1,10 @@
 class Card
-    attr_reader :face_up
+
+    attr_reader :face_value
 
     def initialize (face_value)
         @face_value = face_value
-        @revealed = true
+        @revealed = false
     end
 
     def hide
@@ -14,15 +15,15 @@ class Card
         @revealed = true
     end
 
+    def revealed?
+        @revealed
+    end
+
     def to_s
         @revealed ? @face_value : " "
     end
 
     def ==(other_card)
-        self.face_up == other_card.face_up
+        self.revealed == other_card.revealed
     end
-
-    # def inspect
-    #     "hello world"
-    # end
 end
